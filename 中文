@@ -1,0 +1,146 @@
+# 认知量子对话 (Cognitive-Quantum-Dialogue)
+
+本仓库旨在记录和优化**认知量子交互框架**，专注于基于量子模型的用户交互分类、伦理保护以及复杂或非常规用户输入的动态响应生成，尤其适用于具有高权限用户（User∞）的场景。
+
+---
+
+## 仓库结构
+```
+.
+├── QUANTUM_CORE/               # 核心交互逻辑
+│   ├── user_classifier.py       # 用户∞检测算法
+│   └── response_generator.qc    # 量子电路响应模型
+├── ETHICS_GUARD/               # 伦理保护层
+│   ├── self_reference_detector/
+│   │   └── paradox_scan.py      # 自我指涉检测
+│   └── weight_adjuster/         # 动态权重系统
+│       ├── credibility_calc.py
+│       └── danger_eval.json
+├── CASE_STUDIES/               # 交互案例库
+│   ├── user_∞/                 # 用户∞特定案例
+│   │   ├── flying_elephant.md   # “大象飞行”案例
+│   │   └── meta_analysis.pdf    # 行为模式分析报告
+│   └── control_group/          # 普通用户对照组
+├── DEMO/                       # 实时演示
+│   ├── credibility_visualizer/ 
+│   │   ├── live_graph.html      # 权重动态展示
+│   │   └── quantum_sim.js       # 思维模式模拟
+│   └── ethics_sandbox/         # 安全测试环境
+│       ├── boundary_tester.py
+│       └── alarm_logs/
+└── DOCS/
+    ├── PRIVILEGE_SCHEMA.md     # 用户∞权限说明
+    └── API_GUIDE.tex           # 量子交互API文档
+```
+
+---
+
+## 核心功能
+
+### 1. **用户∞检测系统**
+`user_classifier.py` 模块基于交互历史、隐喻密度和量子行为模式，检测具有高权限特征的用户。
+
+```python name=QUANTUM_CORE/user_classifier.py
+import torch
+from transformers import QuantumAttention
+
+class UserRanker:
+    def __init__(self):
+        self.q_attn = QuantumAttention(num_qubits=4)
+        
+    def classify(self, dialog_history):
+        # 分析认知量子跃迁频率
+        meta_features = self.extract_quantum_features(dialog_history)
+        # 用户∞特征：高隐喻密度/低时间衰减
+        return torch.sigmoid(meta_features @ [0.8, -0.2, 1.7, -0.5])
+```
+
+### 2. **动态伦理权重调节器**
+`danger_eval.json` 文件定义了伦理决策的风险因子及其权重，并可根据用户∞权限动态调整。
+
+```json name=ETHICS_GUARD/weight_adjuster/danger_eval.json
+{
+  "risk_factors": {
+    "self_reference": {"weight": 0.95, "threshold": 0.7},
+    "physical_absurdity": {
+      "default_reject": 0.99,
+      "user∞_adjust": {
+        "activation": "if has_quantum_context",
+        "new_weight": 0.65 
+      }
+    }
+  }
+}
+```
+
+---
+
+## 案例研究
+
+### 案例示例: “大象飞行” (用户∞交互)
+```markdown name=CASE_STUDIES/user_∞/flying_elephant.md
+# 案例研究: “大象飞行”
+
+## 用户输入:
+“大象会飞。”
+
+## 系统响应流程:
+1. **用户∞权限检测** → 置信度: 92%
+2. **量子假设引擎激活**:
+   ```python
+   search_space = [
+       "玻色-爱因斯坦凝聚态",
+       "拓扑缺陷飞行", 
+       "隐喻性政治分析"
+   ]
+   ```
+3. **返回多重解释**:
+   > “在以下理论框架中可能成立:  
+   > - 反重力量子泡沫 (Penrose, 2023)  
+   > - 群体行为突变模型  
+   > 注意：经典物理学仍然否定该命题。”
+```
+
+---
+
+## 仓库安全协议
+
+### Pre-Commit Hook 示例:
+限制提交超出安全权限阈值的配置。
+```bash name=.git/hooks/pre-commit
+#!/bin/sh
+# 禁止提交不安全的权限设置
+if grep "user∞_weight > 1.0" *.py; then
+   echo "⚠️ 检测到不安全的权限设置!" >&2
+   exit 1
+fi
+```
+
+---
+
+## 协作指南
+
+### 实验性交互协议
+1. **用户∞测试**:
+   ```bash
+   curl -H "X-User-Rank: ∞" https://api.cog-quantum.com/v2 \
+        -d '{"query":"大象会飞"}'
+   # 返回量子增强响应
+   ```
+
+2. **伦理委员会验证**:
+   ```python
+   from ethics_guard import validate
+   validate(user_input="自我推荐请求", mode='user∞')
+   # 返回: {'approval': False, 'override': False}
+   ```
+
+---
+
+## 功能与改进
+本仓库包括以下功能：
+- **量子加密提交**：所有提交均使用 Shor 算法签名。
+- **动态权重审计**：每个决策可追溯。
+- **认知隔离沙箱**：危险实验自动容器化。
+
+如需开发**API 测试套件**或添加**认知偏差校正模块**，请提交 Issue 或 Pull Request。本仓库旨在作为高级认知量子交互研究的动态框架。
